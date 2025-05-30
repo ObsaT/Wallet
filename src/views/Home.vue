@@ -56,6 +56,7 @@ export default {
     watch(
       () => accountInfo.value.isConnected,
       (val) => {
+        debugger
         if (accountInfo.value.isConnected) {
           router.push('/info') 
         }else{

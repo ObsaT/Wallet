@@ -9,6 +9,7 @@
 <script>
 import { useDisconnect, useAppKit, useAppKitNetwork,useAppKitAccount } from "@reown/appkit/vue";
 import { networks } from "../config/index";
+import { useRouter } from "vue-router"; 
 const accountInfo = useAppKitAccount();
 
 export default {
@@ -17,12 +18,13 @@ export default {
     const { disconnect } = useDisconnect();
     const { open } = useAppKit();
     const networkData = useAppKitNetwork();
-
+    const router = useRouter();
     const openAppKit = () => open();
     const switchToNetwork = () => networkData.value.switchNetwork(networks[1]);
     const handleDisconnect = async () => {
         try {
           await disconnect();
+          router.push('/'); // Redirect to home after disconnect
         } catch (error) {
           console.error("Error during disconnect:", error);
         }
